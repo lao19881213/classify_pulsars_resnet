@@ -1,0 +1,11 @@
+#trian model
+training/
+
+#code
+*.pyc
+
+#log file
+*.out
+
+#pre-model
+*.npy
