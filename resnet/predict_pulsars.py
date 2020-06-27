@@ -13,7 +13,7 @@ class ResNet_predict():
         self.num_classes = 2
         self.image_size = 224
         self.mean = np.array([127.5, 127.5, 127.5])
-        self.checkpoint_path = "../training/resnet_20200627_130655/checkpoint"
+        self.checkpoint_path = "../training/resnet_20200627_153555/checkpoint"
         self.predict(path)
 
     def get_data(self, path):
@@ -24,15 +24,15 @@ class ResNet_predict():
 
     def predict(self, path):
         img = self.get_data(path)
-        ckpt = tf.train.get_checkpoint_state('../training/resnet_20200627_130655/checkpoint')
+        ckpt = tf.train.get_checkpoint_state('../training/resnet_20200627_153555/checkpoint')
         with tf.Session() as sess:
             new_saver = tf.train.import_meta_graph(ckpt.model_checkpoint_path + '.meta')
             new_saver.restore(sess, ckpt.model_checkpoint_path)
             tf.get_default_graph().as_graph_def()
             x = sess.graph.get_tensor_by_name('input:0')
             y = sess.graph.get_tensor_by_name('output:0')
-
-            result = sess.run(y, feed_dict={x: img})
+            is_training = sess.graph.get_tensor_by_name('trainval:0')
+            result = sess.run(y, feed_dict={x: img,is_training : False})
             label = np.argmax(result, 1)
             print("predict label {}, confidence {}%".format(label[0], result[0][label[0]] * 100))
             self.predict = label[0]

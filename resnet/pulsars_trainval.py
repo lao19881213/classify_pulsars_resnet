@@ -54,9 +54,10 @@ def main(_):
     flags_file.close()
 
     # Placeholders
-    x = tf.placeholder(tf.float32, [FLAGS.batch_size, 224, 224, 3], name='input')
+    #x = tf.placeholder(tf.float32, [FLAGS.batch_size, 224, 224, 3], name='input')
+    x = tf.placeholder(tf.float32, [None, 224, 224, 3], name='input')
     y = tf.placeholder(tf.float32, [None, FLAGS.num_classes])
-    is_training = tf.placeholder('bool', [])
+    is_training = tf.placeholder('bool', [], name='trainval')
 
     # Model
     train_layers = FLAGS.train_layers.split(',')
