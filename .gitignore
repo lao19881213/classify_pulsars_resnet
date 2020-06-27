@@ -9,3 +9,6 @@ training/
 
 #pre-model
 *.npy
+
+#image file
+*.png
