@@ -822,7 +822,7 @@ if __name__ == "__main__":
 
     #testpfd = "/home/ransom/tmp_pfd/M5_52725_W234_PSR_1518+0204A.pfd"
     #testpfd = "/home/ransom/tmp_pfd/M13_52724_W234_PSR_1641+3627C.pfd"
-    testpfd = "M13_53135_W34_rficlean_DM30.10_PSR_1641+3627C.pfd"
+    testpfd = "/home/blao/pulsar_machine_learning/classify_pulsars_resnet/classify_pulsars_resnet/FAST_pulsars/test_data/FP20180213_0-1GHz_Dec+41.1_drifting1_0107_DM20.80_73.47ms_Cand.pfd"
 
     tp = pfd(testpfd)
 

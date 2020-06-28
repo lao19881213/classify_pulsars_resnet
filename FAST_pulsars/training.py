@@ -9,7 +9,6 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 #from scipy.linalg import svd
 #from pylab import *
-from sklearn.decomposition import RandomizedPCA as PCA
 
 class pfddata(pfd):
     initialized = False
@@ -229,26 +228,26 @@ class pfddata(pfd):
         return data
 
 
-pfd_data = pfddata("/o9000/MWA/GLEAM/FAST_pulsars/PICS-ResNet_data/train_data/pulsar/FP20180204_0-1GHz_J0543+2329_drifting_9_0004_DM80.20_61.61ms_Cand.pfd") 
-nbins = 64
-data = pfd_data.getdata(subbands=nbins)
-print(data.shape)
-
-plt.figure()
-#fig.set_size_inches(5,5)
-    #print(hdu.data.shape[0])
-#ax = plt.Axes(fig, [0., 0., 1., 1.])
-ax = plt.gca()
-ax.set_axis_off()
-#fig.add_axes(ax)
-
-pca = PCA(n_components=24)
-rd = data.reshape(nbins,nbins)
-pca.fit(rd)
-data = pca.inverse_transform(pca.transform(rd)).flatten()
-data = data.reshape((nbins,nbins))
-plt.imshow(data, origin='lower',  aspect='auto', cmap=plt.cm.gray_r) #plt.cm.Greys) #interpolation='bilinear'
-plt.savefig("subbands_data.png")
+#pfd_data = pfddata("/o9000/MWA/GLEAM/FAST_pulsars/PICS-ResNet_data/train_data/pulsar/FP20180213_0-1GHz_Dec+41.1_drifting1_0107_DM20.80_73.47ms_Cand.pfd") 
+#nbins = 64
+#data = pfd_data.getdata(subbands=nbins)
+#print(data.shape)
+#
+#plt.figure()
+##fig.set_size_inches(5,5)
+#    #print(hdu.data.shape[0])
+##ax = plt.Axes(fig, [0., 0., 1., 1.])
+#ax = plt.gca()
+#ax.set_axis_off()
+##fig.add_axes(ax)
+#
+##pca = PCA(n_components=1)
+##rd = data.reshape(nbins,nbins)
+##pca.fit(rd)
+##data = pca.inverse_transform(pca.transform(rd)).flatten()
+#data = data.reshape((nbins,nbins))
+#plt.imshow(data, origin='lower',  aspect='auto', cmap=plt.cm.gray_r) #plt.cm.Greys) #interpolation='bilinear'
+#plt.savefig("subbands_data.png")
 #intervals_data = pfd_data.getdata(intervals=64)
 #print(intervals_data.shape)
 
