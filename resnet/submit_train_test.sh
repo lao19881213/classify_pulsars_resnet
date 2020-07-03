@@ -9,10 +9,7 @@
  
 source /home/blao/rgz_rcnn/bashrc 
  
-python pulsars_trainval.py \
+python /home/blao/pulsar_machine_learning/tensorflow-cnn-finetune/resnet/pulsars_trainval.py \
        --num_classes 2 \
        --num_epochs 10 \
-       --batch_size 512 \
-       --resnet_depth 50 \
-       --multi_scale "225,256" \
-       --train_layers "fc,scale5,scale4/block6,scale4/block5"
+       --train_layers "fc"

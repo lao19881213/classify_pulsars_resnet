@@ -8,6 +8,7 @@ from tensorflow.python.training import moving_averages
 
 
 NUM_BLOCKS = {
+    18 : [2, 2, 2, 2],
     50: [3, 4, 6, 3],
     101: [3, 4, 23, 3],
     152: [3, 8, 36, 3]
@@ -31,7 +32,7 @@ class ResNetModel(object):
         if depth in NUM_BLOCKS:
             self.num_blocks = NUM_BLOCKS[depth]
         else:
-            raise ValueError('Depth is not supported; it must be 50, 101 or 152')
+            raise ValueError('Depth is not supported; it must be 18, 50, 101 or 152')
 
 
     def inference(self, x):
@@ -80,7 +81,8 @@ class ResNetModel(object):
         var_list = [v for v in tf.trainable_variables() if
             v.name.split(':')[0].split('/')[-1] in trainable_var_names and
             contains(v.name, train_layers)]
-        train_op = tf.train.AdamOptimizer(learning_rate).minimize(self.loss, var_list=var_list)
+        with tf.control_dependencies(tf.get_collection(tf.GraphKeys.UPDATE_OPS)):
+             train_op = tf.train.AdamOptimizer(learning_rate).minimize(self.loss, var_list=var_list)
 
         ema = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY)
         tf.add_to_collection(UPDATE_OPS_COLLECTION, ema.apply([self.loss]))

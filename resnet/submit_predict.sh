@@ -9,4 +9,4 @@
  
 source /home/blao/rgz_rcnn/bashrc 
  
-python /home/blao/pulsar_machine_learning/tensorflow-cnn-finetune/resnet/predict_pulsars.py
+python /home/blao/pulsar_machine_learning/classify_pulsars_resnet/classify_pulsars_resnet/resnet/predict_pulsars.py

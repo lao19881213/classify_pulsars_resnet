@@ -13,7 +13,7 @@ class ResNet_predict():
         self.num_classes = 2
         self.image_size = 224
         self.mean = np.array([127.5, 127.5, 127.5])
-        self.checkpoint_path = "../training/resnet_20200627_153555/checkpoint"
+        self.checkpoint_path = "../training/resnet_20200703_092254/checkpoint"
         self.predict(path)
 
     def get_data(self, path):
@@ -24,7 +24,7 @@ class ResNet_predict():
 
     def predict(self, path):
         img = self.get_data(path)
-        ckpt = tf.train.get_checkpoint_state('../training/resnet_20200627_153555/checkpoint')
+        ckpt = tf.train.get_checkpoint_state('../training/resnet_20200703_092254/checkpoint')
         with tf.Session() as sess:
             new_saver = tf.train.import_meta_graph(ckpt.model_checkpoint_path + '.meta')
             new_saver.restore(sess, ckpt.model_checkpoint_path)
@@ -41,7 +41,7 @@ class ResNet_predict():
 
 
 if __name__ =='__main__':
-    path = "/home/blao/pulsar_machine_learning/pulsarML/data/MedlatTrainingData/pulsars_val/pulsar_1033.phcx.png"
+    path = "/o9000/MWA/GLEAM/FAST_pulsars/PICS-ResNet_data/train_data/pulsar_img/FP20180204_0-1GHz_J0543+2329_drifting_9_0006_DM77.80_13.26ms_Cand.pfd_subbands.png"
     resnet_pre = ResNet_predict(path)
     result = resnet_pre.result
     print(result)
