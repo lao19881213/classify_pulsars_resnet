@@ -103,7 +103,7 @@ def main(_):
         train_writer.add_graph(sess.graph)
 
         # Load the pretrained weights
-        model.load_original_weights(sess, skip_layers=train_layers)
+        #model.load_original_weights(sess, skip_layers=train_layers)
 
         # Directly restore (your model should be exactly the same with checkpoint)
         # saver.restore(sess, "/Users/dgurkaynak/Projects/marvel-training/alexnet64-fc6/model_epoch10.ckpt")
